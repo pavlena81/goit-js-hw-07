@@ -3,7 +3,7 @@ import { galleryItems } from './gallery-items.js';
  
 const gallaryEl = document.querySelector('.gallery');
 function createListGalleryItems(items) {
-    // event.preventDefault();
+    
     return items.map(({preview, original, description}) => `
     <div class="gallery__item">
   <a class="gallery__link" href="${original}">
@@ -23,9 +23,10 @@ gallaryEl.insertAdjacentHTML("beforeend", listGallaryItems);
 gallaryEl.addEventListener('click', selectImgGallery);
 
 function selectImgGallery(event) {
-    if (event.target.nodeName !== "BUTTON") {
-    return;
-  }
+    event.preventDefault();
+    const instance = basicLightbox.create(`
+    <img src="${event.target.dataset.source}">
+`).show();
 }
 console.log(galleryItems);
 
@@ -36,9 +37,14 @@ const modalTemplate = () =>
         <p>I'm a modal created from a DOM element/node.</p>
     </div>`;
 
-const instance = basicLightbox.create(modalTemplate());
-
 // instance.show();
+
+// const instance = basicLightbox.create(modalTemplate());
+
+
+// const visible = basicLightbox.visible();
+
+
 // Создание и рендер разметки по массиву данных galleryItems и 
 // предоставленному шаблону элемента галереи.
 // Реализация делегирования на div.gallery и получение url большого
