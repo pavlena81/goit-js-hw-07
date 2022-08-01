@@ -27,14 +27,18 @@ ulEl.insertAdjacentHTML("beforeend", listGallaryItems);
 console.log(galleryItems);
 
 // var lightbox = $('.gallery a').simpleLightbox({ /* options */ });
-let galleryEl = new SimpleLightbox('.gallery a');
-galleryEl.on('show.simplelightbox', function () {
-	// Do something…
+let galleryEl = new SimpleLightbox('.gallery a',{
+    
+    captionPosition: `bottom`,
+    captionsData: "alt",
+    captionDelay: 250,
 });
+// galleryEl.on('show.simplelightbox', function () {   
+// });
 
-galleryEl.on('error.simplelightbox', function (e) {
-	console.log(e); // Some usefull information
-});
+// galleryEl.on('error.simplelightbox', function (e) {
+// 	console.log(e); // Some usefull information
+// });
 
 // with jQuery nearly the same
 // let galleryEl = $('.gallery a').simpleLightbox();
