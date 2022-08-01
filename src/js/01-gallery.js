@@ -24,10 +24,26 @@ gallaryEl.addEventListener('click', selectImgGallery);
 
 function selectImgGallery(event) {
     event.preventDefault();
+    
     const instance = basicLightbox.create(`
     <img src="${event.target.dataset.source}">
-`).show();
+`,{
+      onShow: (instance) => {
+        window.addEventListener("keydown", onEscKeyPress);
+      },
+      onClose: (instance) => {
+        window.removeEventListener("keydown", onEscKeyPress);
+      },
+    }
+    );
+    function onEscKeyPress(event) {
+    if (event.code === "Escape") {
+      instance.close();
+    }      
+  }
+  instance.show();    
 }
+
 console.log(galleryItems);
 
 
@@ -35,14 +51,14 @@ console.log(galleryItems);
 const modalTemplate = () =>  
     `<div class='modal'>
         <p>I'm a modal created from a DOM element/node.</p>
+        
     </div>`;
+
 
 // instance.show();
 
 // const instance = basicLightbox.create(modalTemplate());
 
-
-// const visible = basicLightbox.visible();
 
 
 // Создание и рендер разметки по массиву данных galleryItems и 
