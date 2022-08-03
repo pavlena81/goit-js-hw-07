@@ -23,10 +23,14 @@ gallaryEl.insertAdjacentHTML("beforeend", listGallaryItems);
 gallaryEl.addEventListener('click', selectImgGallery);
 
 function selectImgGallery(event) {
-    event.preventDefault();
-    
-    const instance = basicLightbox.create(`
-    <img src="${event.target.dataset.source}">
+  event.preventDefault();
+  if (event.target.nodeName !== 'IMG') return
+  ;
+      
+  
+  const instance = basicLightbox.create(`
+    <div>
+    <img src="${event.target.dataset.source}"></div>
 `,{
       onShow: (instance) => {
         window.addEventListener("keydown", onEscKeyPress);
