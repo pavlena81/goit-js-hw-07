@@ -24,8 +24,7 @@ gallaryEl.addEventListener('click', selectImgGallery);
 
 function selectImgGallery(event) {
   event.preventDefault();
-  if (event.target.nodeName !== 'IMG') return
-  ;
+  if (event.target.nodeName !== 'IMG') return;
       
   
   const instance = basicLightbox.create(`
